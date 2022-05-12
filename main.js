@@ -19,3 +19,25 @@ function modelLoaded()
 {
   console.log('Model Loaded!');
 }
+
+function gotPoses(results)
+{
+  if(results.length > 0)
+  {
+
+    rightWristY = results[0].pose.rightWrist.y;
+    rightWristX = results[0].pose.rightWrist.x;
+    scoreRightWrist =  results[0].pose.keypoints[10].score;
+    console.log(scoreRightWrist);
+  }
+}
+
+function draw()
+{
+	if(scoreRightWrist > 0.2)
+  {
+    fill("red");
+    stroke("red");
+    circle(rightWristX, rightWristY, 30);
+  }
+}
